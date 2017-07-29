@@ -1,12 +1,17 @@
 import React from 'react'
-// import AddCat from './AddCat'
+import {HashRouter as Router, Route} from 'react-router-dom'
 import AddRequest from './AddRequest'
 
 const App = () => {
   return (
-    <div className="request">
+
+    <div>
       <h1>Company business travel request</h1>
-      <AddRequest />
+      <Router>
+        <div className="container">
+          <Route path = "/" component={AddRequest} />
+        </div>
+      </Router>
     </div>
   )
 }

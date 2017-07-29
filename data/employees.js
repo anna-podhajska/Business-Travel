@@ -22,7 +22,7 @@ const employees = [
     name : "Alan Blake",
     position : "Product owner",
     site : "Prague",
-    division : "TV Technology",
+    division : "TV Technology One",
     phone : "+420343555669",
     email : "Tom.Cat@company.com"
   },
@@ -31,7 +31,7 @@ const employees = [
     name : "Monica Belucci",
     position : "UE specialist",
     site : "Prague",
-    division : "Connected Health",
+    division : "Consumer One",
     phone : "+420340876999",
     email : "Monica.Belucci@company.com"
   },
@@ -40,7 +40,7 @@ const employees = [
     name : "Ian Harris",
     position : "Sales manager",
     site : "Wellington",
-    division : "TV Technology",
+    division : "TVT Connected",
     phone : "+64335667889",
     email : "Ian.Harris@company.com"
   },
@@ -49,7 +49,7 @@ const employees = [
     name : "Alson Saunders",
     position : "Project manager",
     site : "Wellington",
-    division : "Connected Health",
+    division : "Silicon",
     phone : "+64335667776",
     email : "Alison.Saunders@company.com"
   }

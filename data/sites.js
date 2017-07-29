@@ -6,6 +6,6 @@ const sites = [
   "San Jose",
   "Philadelphia",
   "Wroclaw"
-]
+].sort()
 
 export default sites

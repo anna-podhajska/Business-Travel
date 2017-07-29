@@ -3,6 +3,7 @@ import employees from '../../data/employees.js'
 import sites from '../../data/sites.js'
 import clients from '../../data/clients.js'
 import projects from '../../data/projects.js'
+import approvers from '../../data/approvers.js'
 
 
 export default class AddRequest extends React.Component {
@@ -49,6 +50,10 @@ export default class AddRequest extends React.Component {
     return(projects.map((project, i) => <option key={i}> {project.proj_name} {project.proj_code}</option>
     ))
   }
+  renderApprovers(approvers) {
+    return(approvers.map((approver, i) => <option key={i}> {approver}</option>
+    ))
+  }
 
   render () {
     return (
@@ -86,6 +91,19 @@ export default class AddRequest extends React.Component {
           <select name="project" onChange={(e) => this.updateNewRequest(e)}>
             <option selected disabled> project </option>
             {this.renderProject(projects)}
+          </select>
+        </div>
+
+        <div className="form paymentDet">
+          <label> Approval and payment details </label><br/>
+          <select name="approver" onChange={(e)=> this.updateNewRequest(e)}>
+            <option selected disabled>approver</option>
+            {this.renderApprovers(approvers)}
+          </select>
+          <select name="isBillable" onChange={(e)=> this.updateNewRequest(e)}>
+            <option selected disabled> is billable to customer?</option>
+            <option> yes </option>
+            <option> no </option>
           </select>
         </div>
 

@@ -6,6 +6,6 @@ const approvers = [
   "Nina Bosmack",
   "Jim O'Donoghue",
   "Romain Guenard"
-]
+].sort()
 
 export default approvers
