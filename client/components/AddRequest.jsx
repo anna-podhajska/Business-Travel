@@ -18,6 +18,7 @@ export default class AddRequest extends React.Component {
   }
 
   updateNewRequest(e) {
+    console.log(this.state);
     let newRequest = this.state.NewRequest
     newRequest[e.target.name] = e.target.value
     this.setState({NewRequest: newRequest})
