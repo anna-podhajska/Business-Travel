@@ -1,0 +1,16 @@
+.form-description {
+}
+
+select, input {
+  width: 10rem;
+}
+
+.form {
+  margin-top: 2rem;
+}
+
+.request {
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
