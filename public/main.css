@@ -1,14 +1,18 @@
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: sans-serif;
   background-color: lightgray;
+}
+* {
+  box-sizing: border-box;
 }
 .form-description {
 }
-
 select, input {
   width: 10rem;
 }
-
+h1 {
+  font-size: 1em;
+}
 .form {
   margin-top: 2rem;
 }
@@ -20,5 +24,47 @@ select, input {
 }
 
 .home-link {
+  text-decoration: none;
+}
+.sideBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding: 3px;
+  width: 25%;
+  background-color: #444C5C;
+  color: whitel;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: right;
+}
+.sideBar a {
+  color: white;
+}
+.sideBar ul {
+  list-style: none;
+}
+.content {
+  width: 75%;
+  padding: 2em 3em 0;
+  margin-left: 25%;
+}
+
+.nav-button {
+  display: inline-block;
+  zoom: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  background: transparent;
+  border: 1px solid rgb(176, 202, 219);
+  color: #fff;
+  margin-top: 1em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 50%;
+  padding: 3px;
   text-decoration: none;
 }

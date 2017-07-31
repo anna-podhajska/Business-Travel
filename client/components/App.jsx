@@ -1,6 +1,6 @@
 import React from 'react'
 import {HashRouter as Router, Route} from 'react-router-dom'
-import Home from './Home'
+import NavBar from './NavBar'
 import AddRequest from './AddRequest'
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <div className="container">
       <Router>
         <div className="container">
-          <Route path = "/" component={Home} />
+          <Route path = "/" component={NavBar} />
           <Route path = "/submit" component={AddRequest} />
         </div>
       </Router>
