@@ -75,10 +75,6 @@ export default class AddRequest extends React.Component {
 
           <div className="form contactDet">
             <label> Contact details </label><br/>
-            <select name="site" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> site </option>
-              {this.renderSite(sites)}
-            </select>
             <input name="email" placeholder="email" type="text" onChange={(e) => this.updateNewRequest(e)}/>
             <input name="phone" placeholder="phone" type="text" onChange={(e) => this.updateNewRequest(e)}/>
           </div>
@@ -105,6 +101,10 @@ export default class AddRequest extends React.Component {
               <option selected disabled> is billable to customer?</option>
               <option> yes </option>
               <option> no </option>
+            </select>
+            <select name="site" onChange={(e) => this.updateNewRequest(e)}>
+              <option selected disabled> site </option>
+              {this.renderSite(sites)}
             </select>
           </div>
 
