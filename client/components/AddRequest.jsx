@@ -25,32 +25,34 @@ export default class AddRequest extends React.Component {
 
   submitRequest(e) {
     e.preventDefault()
+    this.setState([e.target.name]: e.target.value)
+    console.log([e.target]);
   }
 
-  renderEmplNo(employees) {
+  _renderEmplNo(employees) {
     return (employees.map(function(employee, i) {
         return (
          <option key={i}> {employee.emplNo}</option>
         )
     }))
   }
-  renderEmplDivision(employees) {
+  _renderEmplDivision(employees) {
     return (employees.map((empl, i)=> <option key={i}> {empl.division}</option>))
   }
-  renderSite(sites) {
+  _renderSite(sites) {
     return(sites.map(function(site, i) {
       return <option key={i}> {site} </option>
     }))
   }
-  renderClient(clients) {
+  _renderClient(clients) {
     return(clients.map((client, i) => <option key={i}> {client}</option>
     ))
   }
-  renderProject(projects) {
+  _renderProject(projects) {
     return(projects.map((project, i) => <option key={i}> {project.proj_name} {project.proj_code}</option>
     ))
   }
-  renderApprovers(approvers) {
+  _renderApprovers(approvers) {
     return(approvers.map((approver, i) => <option key={i}> {approver}</option>
     ))
   }
@@ -58,18 +60,18 @@ export default class AddRequest extends React.Component {
   render () {
     return (
       <div className="content">
-        <form onSubmit={this.submitRequest}>
+        <form onSubmit={e => this.submitRequest(e)}>
 
           <div className="form personalDet">
             <label> Personal details </label><br/>
             <input name="name" placeholder="name as in the passport" type="text" onChange={(e) => this.updateNewRequest(e)}/>
             <select name="emplNo" onChange={(e) => this.updateNewRequest(e)}>
               <option selected disabled> employee number </option>
-              {this.renderEmplNo(employees)}
+              {this._renderEmplNo(employees)}
             </select>
             <select name="division" onChange={(e) => this.updateNewRequest(e)}>
               <option selected disabled> division </option>
-              {this.renderEmplDivision(employees)}
+              {this._renderEmplDivision(employees)}
             </select>
           </div>
 
@@ -83,11 +85,11 @@ export default class AddRequest extends React.Component {
             <label> Client details </label><br/>
             <select name="client" onChange={(e) => this.updateNewRequest(e)}>
               <option selected disabled> client name </option>
-              {this.renderClient(clients)}
+              {this._renderClient(clients)}
             </select>
             <select name="project" onChange={(e) => this.updateNewRequest(e)}>
               <option selected disabled> project </option>
-              {this.renderProject(projects)}
+              {this._renderProject(projects)}
             </select>
           </div>
 
@@ -95,7 +97,7 @@ export default class AddRequest extends React.Component {
             <label> Approval and payment details </label><br/>
             <select name="approver" onChange={(e)=> this.updateNewRequest(e)}>
               <option selected disabled>approver</option>
-              {this.renderApprovers(approvers)}
+              {this._renderApprovers(approvers)}
             </select>
             <select name="isBillable" onChange={(e)=> this.updateNewRequest(e)}>
               <option selected disabled> is billable to customer?</option>
@@ -104,14 +106,14 @@ export default class AddRequest extends React.Component {
             </select>
             <select name="site" onChange={(e) => this.updateNewRequest(e)}>
               <option selected disabled> site </option>
-              {this.renderSite(sites)}
+              {this._renderSite(sites)}
             </select>
           </div>
 
           <p>Hello {this.state.NewRequest.name}, please provide more details regarding your travel:</p>
-          <textarea className="form-description" rows="10" cols="100" name="description" placeholder="" type="edit" onChange={(e) => this.updateNewRequest(e)}/>
+          <textarea className="form-description" rows="10" cols="100" name="description" placeholder="" type="edit" onChange={(e) => this.updateNewRequest(e)}/><br/>
 
-          <br/><input type="submit"/>
+          <input type="submit" value="submit a new request"/>
 
         </form>
       </div>

@@ -22,7 +22,11 @@ h1 {
   margin-right: 20px;
 
 }
-
+.AllRequests-request {
+  text-align: center;
+}
+.home-container {
+}
 .home-link {
   text-decoration: none;
 }
@@ -44,10 +48,15 @@ h1 {
 .sideBar ul {
   list-style: none;
 }
-.content {
+.main-contents {
   width: 75%;
   padding: 2em 3em 0;
   margin-left: 25%;
+  text-align: left;
+}
+
+.nav-bar {
+
 }
 
 .nav-button {
