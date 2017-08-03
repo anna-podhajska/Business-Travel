@@ -9,7 +9,7 @@ const projects = [
     proj_code: 11201
   },
   {
-    proj_name:   "Jet Ski",
+    proj_name: "Jet Ski",
     proj_code: 11202
   },
   {
