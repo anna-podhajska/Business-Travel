@@ -24,7 +24,7 @@ export default class AddRequest extends React.Component {
   }
 
   submitRequest(e) {
-    console.log(this.state);
+    // console.log(this.state);
     e.preventDefault()
     this.props.saveRequest(this.state.newRequest)
     // this.setState([e.target.name]: e.target.value)

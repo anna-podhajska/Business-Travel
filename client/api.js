@@ -4,14 +4,14 @@ var requestUrl = '/v1'
 
 //example of an api request function on client side
 
-export function getSomething(callback) {
-  request
-    .get(requestUrl)
-    .end((err, res) => {
-      if (err) callback(err)
-      else callback(null, res.body)
-    })
-}
+// export function getSomething(callback) {
+//   request
+//     .get(requestUrl)
+//     .end((err, res) => {
+//       if (err) callback(err)
+//       else callback(null, res.body)
+//     })
+// }
 
 export function getApprovers(callback) {
   request

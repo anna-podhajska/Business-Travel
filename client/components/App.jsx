@@ -24,11 +24,9 @@ class App extends React.Component {
   }
 
 saveRequest(request) {
-
   this.setState({
     requests: [...this.state.requests, request]
   })
-
 }
 componentDidMount() {
   this.requestApprovers()
@@ -54,7 +52,7 @@ requestSites(){
 }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="home-container">
         <Router>
