@@ -3,19 +3,55 @@ var router = express.Router()
 
 var db = require('../db')
 
-router.get('/', (req, res) => {
-  var knex = req.app.get('db')
-  res.json(['Hello', 'Hi', "G'day"])
-
-  //example of a db call from a route:
-
-  // db.dbFunction(knex)
-  //   .then(response => {
-  //     res.json(response)
-  //   })
-  //   .catch(err => {
-  //     res.sendStatus(500).send(err + ' SERVER ERROR')
-  //   })
+router.get('/approvers', (req, res) => {
+  db.getApprovers(req.app.get('db'))
+    .then(approvers => {
+      res.json(approvers)
+    })
+    .catch(err => {
+      res.status(500).send(err + ' SERVER ERROR')
+    })
 })
+
+router.get('/clients', (req, res) => {
+  db.getClients(req.app.get('db'))
+    .then(clients => {
+      res.json(clients)
+    })
+    .catch(err => {
+      res.status(500).send(err + ' SERVER ERROR')
+    })
+})
+
+router.get('/employees', (req, res) => {
+  db.getEmployees(req.app.get('db'))
+    .then(employees => {
+      res.json(employees)
+    })
+    .catch(err => {
+      res.status(500).send(err + ' SERVER ERROR')
+    })
+})
+
+router.get('/projects', (req, res) => {
+  db.getProjects(req.app.get('db'))
+    .then(projects => {
+      res.json(projects)
+    })
+    .catch(err => {
+      res.status(500).send(err + ' SERVER ERROR')
+    })
+})
+
+router.get('/sites', (req, res) => {
+  db.getSites(req.app.get('db'))
+    .then(sites => {
+      res.json(sites)
+    })
+    .catch(err => {
+      res.status(500).send(err + ' SERVER ERROR')
+    })
+})
+
 
 module.exports = router

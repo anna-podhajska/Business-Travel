@@ -6,6 +6,8 @@ import RequestsAll from "./RequestsAll"
 import RequestView from "./RequestView"
 import Home from "./Home"
 
+import {getApprovers, getClients, getEmployees, getProjects, getSites} from '../api'
+
 
 class App extends React.Component {
 
@@ -28,8 +30,31 @@ saveRequest(request) {
   })
 
 }
+componentDidMount() {
+  this.requestApprovers()
+  this.requestClients()
+}
+saveData(err, data, name) {
+  this.setState({err, [name]: data})
+}
+requestApprovers() {
+  getApprovers(this.saveData.bind(this))
+}
+requestClients() {
+  getClients(this.saveData.bind(this))
+}
+requestEmployees(){
+  getEmployees(this.saveData.bind(this))
+}
+requestProjects(){
+  getProjects(this.saveData.bind(this))
+}
+requestSites(){
+  getSites(this.saveData.bind(this))
+}
 
   render() {
+    console.log(this.state);
     return (
       <div className="home-container">
         <Router>
