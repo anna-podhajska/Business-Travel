@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.integer('approver_id')
     table.boolean('is_billable')
     table.integer('site_id')
+    table.string('division')
   })
 };
 

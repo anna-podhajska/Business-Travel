@@ -5,18 +5,23 @@ import clients from '../../data/clients.js'
 import projects from '../../data/projects.js'
 import approvers from '../../data/approvers.js'
 
+import {getApprovers, getClients, getProjects, getSites, getEm} from '../api'
 
 export default class AddRequest extends React.Component {
 
   constructor (props) {
     super (props)
     this.state = {
-      newRequest: {}
+      newRequest: {},
+      companyData: props.companyData
     }
+    console.log(props.companyData);
     this.submitRequest = this.submitRequest.bind(this)
     this.updateNewRequest = this.updateNewRequest.bind(this)
   }
-
+  componentWillReceiveProps({companyData}) {
+    this.setState({companyData})
+  }
   updateNewRequest(e) {
     let newRequest = this.state.newRequest
     newRequest[e.target.name] = e.target.value
@@ -30,35 +35,36 @@ export default class AddRequest extends React.Component {
     // this.setState([e.target.name]: e.target.value)
   }
 
-  _renderEmplNo(employees) {
-    return (employees.map(function(employee, i) {
+  _renderEmplNo() {
+    return ((this.state.companyData.employees||[]).map(function(employee, i) {
         return (
-         <option key={i}> {employee.emplNo}</option>
+         <option key={i} value={employee.employee_id}> {employee.emplNo}</option>
         )
     }))
   }
-  _renderEmplDivision(employees) {
-    return (employees.map((empl, i)=> <option key={i}> {empl.division}</option>))
+  _renderEmplDivision() {
+    return ((this.state.companyData.employees||[]).map((empl, i)=> <option key={i}> {empl.division}</option>))
   }
   _renderSite(sites) {
-    return(sites.map(function(site, i) {
-      return <option key={i}> {site} </option>
+    return((this.state.companyData.sites||[]).map(function(site, i) {
+      return <option key={i} value={site.site_id}> {site.name} </option>
     }))
   }
-  _renderClient(clients) {
-    return(clients.map((client, i) => <option key={i}> {client}</option>
+  _renderClient() {
+    return((this.state.companyData.clients||[]).map((client, i) => <option key={i} value={client.client_id}> {client.name}</option>
     ))
   }
-  _renderProject(projects) {
-    return(projects.map((project, i) => <option key={i}> {project.proj_name} {project.proj_code}</option>
+  _renderProject() {
+    return((this.state.companyData.projects||[]).map((project, i) => <option key={i}> {project.proj_name} {project.proj_code}</option>
     ))
   }
-  _renderApprovers(approvers) {
-    return(approvers.map((approver, i) => <option key={i}> {approver}</option>
+  _renderApprovers() {
+    return((this.state.companyData.approvers||[]).map((approver, i) => <option key={i} value={approver.approver_id}> {approver.name}</option>
     ))
   }
 
   render () {
+    console.log(this.state);
     return (
       <div className="content">
         <form onSubmit={e => this.submitRequest(e)}>
@@ -66,48 +72,54 @@ export default class AddRequest extends React.Component {
           <div className="form personalDet">
             <label> Personal details </label><br/>
             <input name="name" placeholder="name as in the passport" type="text" onChange={(e) => this.updateNewRequest(e)}/>
-            <select name="emplNo" onChange={(e) => this.updateNewRequest(e)}>
-              <option  disabled> employee number </option>
-              {this._renderEmplNo(employees)}
+            <select name="employee_id" onChange={(e) => this.updateNewRequest(e)}>
+              <option  selected disabled> employee number </option>
+              {this._renderEmplNo()}
             </select>
             <select name="division" onChange={(e) => this.updateNewRequest(e)}>
-              <option  disabled> division </option>
-              {this._renderEmplDivision(employees)}
+              <option  selected disabled> division </option>
+              {this._renderEmplDivision()}
             </select>
           </div>
 
           <div className="form contactDet">
             <label> Contact details </label><br/>
-            <input name="email" placeholder="email" type="text" onChange={(e) => this.updateNewRequest(e)}/>
-            <input name="phone" placeholder="phone" type="text" onChange={(e) => this.updateNewRequest(e)}/>
+            <input name="email" placeholder="email" type="text"
+              onChange={(e) => this.updateNewRequest(e)}
+              value={this.state.newRequest.email|| ((this.state.companyData.employees||[]).find(person => person.employee_id == this.state.newRequest.employee_id)||{}).email}
+            />
+            <input name="phone" placeholder="phone" type="text"
+              onChange={(e) => this.updateNewRequest(e)}
+              value={this.state.newRequest.phone|| ((this.state.companyData.employees||[]).find(person => person.employee_id == this.state.newRequest.employee_id)||{}).phone}
+            />
           </div>
 
           <div className="form clientDet">
             <label> Client details </label><br/>
             <select name="client" onChange={(e) => this.updateNewRequest(e)}>
-              <option disabled> client name </option>
-              {this._renderClient(clients)}
+              <option selected disabled> client name </option>
+              {this._renderClient()}
             </select>
             <select name="project" onChange={(e) => this.updateNewRequest(e)}>
-              <option disabled> project </option>
-              {this._renderProject(projects)}
+              <option selected disabled> project </option>
+              {this._renderProject()}
             </select>
           </div>
 
           <div className="form paymentDet">
             <label> Approval and payment details </label><br/>
             <select name="approver" onChange={(e)=> this.updateNewRequest(e)}>
-              <option disabled>approver</option>
+              <option selected disabled>approver</option>
               {this._renderApprovers(approvers)}
             </select>
             <select name="isBillable" onChange={(e)=> this.updateNewRequest(e)}>
               <option disabled> is billable to customer?</option>
-              <option> yes </option>
-              <option> no </option>
+              <option value={true}> Yes </option>
+              <option value={false}> No </option>
             </select>
             <select name="site" onChange={(e) => this.updateNewRequest(e)}>
-              <option disabled> site </option>
-              {this._renderSite(sites)}
+              <option selected disabled> site </option>
+              {this._renderSite()}
             </select>
           </div>
 

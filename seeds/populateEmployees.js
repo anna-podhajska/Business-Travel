@@ -58,6 +58,15 @@ exports.seed = function(knex, Promise) {
           division : "Silicon",
           phone : "+64335667776",
           email : "Alison.Saunders@company.com"
+        },
+        {
+          emplNo : "E000",
+          name : "Harrison",
+          position : "Senior Developer",
+          site : "Ground Zero",
+          division : "Emoji with sunglasses",
+          phone : "+0279344793",
+          email : "Symeshjb@gmail.com"
         }
       ]);
     });

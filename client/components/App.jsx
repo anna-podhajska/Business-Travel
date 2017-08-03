@@ -14,10 +14,11 @@ class App extends React.Component {
   constructor(props) {
     super(props)
      this.state={
+       companyData: {},
        requests: [
-        {id: 1,
+        {request_id: 1,
         name: "test"},
-        {id: 2,
+        {request_id: 2,
         name: "test2"}
        ]
      }
@@ -31,9 +32,14 @@ saveRequest(request) {
 componentDidMount() {
   this.requestApprovers()
   this.requestClients()
+  this.requestEmployees()
+  this.requestProjects()
+  this.requestSites()
 }
 saveData(err, data, name) {
-  this.setState({err, [name]: data})
+  let companyData = this.state.companyData
+  companyData[name] = data
+  this.setState({err, companyData})
 }
 requestApprovers() {
   getApprovers(this.saveData.bind(this))
@@ -52,7 +58,6 @@ requestSites(){
 }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="home-container">
         <Router>
@@ -62,9 +67,9 @@ requestSites(){
             </div>
             <div className="main-contents">
               <Route path = "/" component={Home} />
-              <Route path = "/submit" render={(props) => <AddRequest saveRequest={this.saveRequest.bind(this)} /> } />
-              <Route path = "/allRequests" render={(props) => <RequestsAll requests={this.state.requests} />} />
-              <Route path = "/requestView" component={RequestView} />
+              <Route path = "/submit" render={(props) => <AddRequest saveRequest={this.saveRequest.bind(this)} companyData={this.state.companyData}/> } />
+              <Route path = "/allRequests" render={(props) => <RequestsAll requests={this.state.requests || []} />} />
+              <Route path = "/requestView/:id" component={(props) => <RequestView request={this.state.requests.find(request => request.request_id == props.match.params.id)}/>} />
             </div>
           </div>
         </Router>

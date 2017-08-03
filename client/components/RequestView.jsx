@@ -3,12 +3,12 @@ import React from 'react'
 // import {HashRouter as Router, Route} from 'react-router-dom'
 // import {Link} from 'react-router-dom'
 
-export default function (props) {
+export default function ({request}) {
 
 
-    console.log(props);
+    console.log(request);
     return(
-      <div></div>
+      <div>{request.name}</div>
     )
 
 }
