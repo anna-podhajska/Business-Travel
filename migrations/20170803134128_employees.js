@@ -1,11 +1,12 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTableIfNotExists('employee', table => {
-    table.increments('emplNo')
+  return knex.schema.createTableIfNotExists('employees', table => {
+    table.increments('employee_id')
+    table.string('emplNo')
     table.string('positions')
     table.string('site')
     table.string('division')
-    table.number('phone')
+    table.string('phone')
     table.string('email')
     table.string('name')
   })
