@@ -11,22 +11,23 @@ export default class AddRequest extends React.Component {
   constructor (props) {
     super (props)
     this.state = {
-      NewRequest: {}
+      newRequest: {}
     }
     this.submitRequest = this.submitRequest.bind(this)
     this.updateNewRequest = this.updateNewRequest.bind(this)
   }
 
   updateNewRequest(e) {
-    let newRequest = this.state.NewRequest
+    let newRequest = this.state.newRequest
     newRequest[e.target.name] = e.target.value
-    this.setState({NewRequest: newRequest})
+    this.setState({newRequest: newRequest})
   }
 
   submitRequest(e) {
+    console.log(this.state);
     e.preventDefault()
-    this.setState([e.target.name]: e.target.value)
-    console.log([e.target]);
+    this.props.saveRequest(this.state.newRequest)
+    // this.setState([e.target.name]: e.target.value)
   }
 
   _renderEmplNo(employees) {
@@ -66,11 +67,11 @@ export default class AddRequest extends React.Component {
             <label> Personal details </label><br/>
             <input name="name" placeholder="name as in the passport" type="text" onChange={(e) => this.updateNewRequest(e)}/>
             <select name="emplNo" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> employee number </option>
+              <option  disabled> employee number </option>
               {this._renderEmplNo(employees)}
             </select>
             <select name="division" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> division </option>
+              <option  disabled> division </option>
               {this._renderEmplDivision(employees)}
             </select>
           </div>
@@ -84,11 +85,11 @@ export default class AddRequest extends React.Component {
           <div className="form clientDet">
             <label> Client details </label><br/>
             <select name="client" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> client name </option>
+              <option disabled> client name </option>
               {this._renderClient(clients)}
             </select>
             <select name="project" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> project </option>
+              <option disabled> project </option>
               {this._renderProject(projects)}
             </select>
           </div>
@@ -96,21 +97,21 @@ export default class AddRequest extends React.Component {
           <div className="form paymentDet">
             <label> Approval and payment details </label><br/>
             <select name="approver" onChange={(e)=> this.updateNewRequest(e)}>
-              <option selected disabled>approver</option>
+              <option disabled>approver</option>
               {this._renderApprovers(approvers)}
             </select>
             <select name="isBillable" onChange={(e)=> this.updateNewRequest(e)}>
-              <option selected disabled> is billable to customer?</option>
+              <option disabled> is billable to customer?</option>
               <option> yes </option>
               <option> no </option>
             </select>
             <select name="site" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> site </option>
+              <option disabled> site </option>
               {this._renderSite(sites)}
             </select>
           </div>
 
-          <p>Hello {this.state.NewRequest.name}, please provide more details regarding your travel:</p>
+          <p>Hello {this.state.newRequest.name}, please provide more details regarding your travel:</p>
           <textarea className="form-description" rows="10" cols="100" name="description" placeholder="" type="edit" onChange={(e) => this.updateNewRequest(e)}/><br/>
 
           <input type="submit" value="submit a new request"/>

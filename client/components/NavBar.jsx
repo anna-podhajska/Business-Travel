@@ -13,7 +13,7 @@ export default function (props) {
           <ul>
             <li><Link className="nav-button" to="/">home</Link></li>
             <li><Link className="nav-button" to="/submit"> submit a new request</Link></li>
-            <li><Link className="nav-button" to="/allRequests "> view all requests</Link></li>
+            <li><Link className="nav-button" to="/allRequests"> view all requests</Link></li>
           </ul>
       </div>
 
