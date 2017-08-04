@@ -59,6 +59,15 @@ export function getRequests(callback) {
     .get(requestUrl + '/travelRequests')
     .end((err, res) => {
       if (err) callback(err)
-      else callback(null, res.body, 'requests')
+      else callback(null, res.body)
+    })
+}
+
+export function getRequest(requestId, callback) {
+  request
+    .get(requestUrl + '/travelRequest/'+requestId)
+    .end((err, res) => {
+      if (err) callback(err)
+      else callback(null, res.body)
     })
 }

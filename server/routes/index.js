@@ -63,5 +63,15 @@ router.get('/travelRequests', (req, res) => {
     })
 })
 
+router.get('/travelRequest/:id', (req, res) => {
+  db.getRequest(req.app.get('db'), req.params.id)
+    .then(travelRequest => {
+      res.json(travelRequest)
+    })
+    .catch(err => {
+      res.status(500).send(err + ' SERVER ERROR')
+    })
+})
+
 
 module.exports = router
