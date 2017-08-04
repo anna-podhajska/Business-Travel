@@ -7,7 +7,8 @@ export default function (props) {
     // console.log(props);
     return (
       <ul>
-        {props.requests.map((request) => <Link to={"/requestView/" +request.request_id}> <li className="RequestsAll-request"> {request.name}</li></Link>)}
+        {props.requests.map((request) =>
+          <Link to={"/requestView/" +request.request_id}> <li className="RequestsAll-request"> {request.name}</li></Link>)}
       </ul>
     )
 

@@ -53,3 +53,12 @@ export function getSites(callback) {
       else callback(null, res.body, 'sites')
     })
 }
+
+export function getRequests(callback) {
+  request
+    .get(requestUrl + '/travelRequests')
+    .end((err, res) => {
+      if (err) callback(err)
+      else callback(null, res.body, 'requests')
+    })
+}

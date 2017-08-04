@@ -25,6 +25,9 @@ h1 {
 .AllRequests-request {
   text-align: center;
 }
+.CliList {
+  text-align: right;
+}
 .home-container {
 }
 .home-link {

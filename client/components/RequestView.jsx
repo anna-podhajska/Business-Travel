@@ -5,10 +5,15 @@ import React from 'react'
 
 export default function ({request}) {
 
-
-    console.log(request);
+    // console.log(request);
     return(
-      <div>{request.name}</div>
+      <div className="RequestView-container">
+
+        {request.name}  <br />
+        {request.description}
+
+      </div>
+
     )
 
 }

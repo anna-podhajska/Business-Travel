@@ -19,10 +19,15 @@ function getSites(connection) {
   return connection('sites')
 }
 
+function getRequests(connection) {
+  return connection('travelRequests')
+}
+
 module.exports = {
   getApprovers,
   getClients,
   getEmployees,
   getProjects,
-  getSites
+  getSites,
+  getRequests
 }

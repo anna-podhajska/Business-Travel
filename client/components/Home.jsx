@@ -7,8 +7,7 @@ export default function (props) {
   return (
     <div className="home-container">
       <div className="home-items">
-        <h3> Logged in as Bob </h3>
-        <h3> employee travel profile </h3>
+        <h3> User view </h3>
       </div>
     </div>
   )
