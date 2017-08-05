@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
     table.text('description')
     table.timestamp('created_at').defaultTo(knex.fn.now())
     table.date('outbound_date')
-    table.string("approval_status")
+    table.string("approval_status").defaultTo("pending_approval")
   })
 };
 

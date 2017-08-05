@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('approvers').insert([
         {approver_id: 1, name: 'Derek Dwyer'},
-        {approver_id: 2, name: `John O'brian`},
+        {approver_id: 2, name: `John O'Brien`},
         {approver_id: 3, name: 'John Mulcahy'},
         {approver_id: 4, name: 'Goretti McCormack'},
         {approver_id: 5, name: 'Nina Bosmack'},

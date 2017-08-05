@@ -1,136 +1,144 @@
 import React from 'react'
-import employees from '../../data/employees.js'
-import sites from '../../data/sites.js'
-import clients from '../../data/clients.js'
-import projects from '../../data/projects.js'
-import approvers from '../../data/approvers.js'
 
-import {getApprovers, getClients, getProjects, getSites, getEm} from '../api'
+import {getEmployees, getApprovers, getClients, getProjects, getSites, getEm} from '../api'
 
-export default class AddRequest extends React.Component {
 
-  constructor (props) {
-    super (props)
+class AddRequest extends React.Component {
+
+  constructor(props) {
+    super(props)
     this.state = {
-      newRequest: {},
-      companyData: props.companyData
+      employees: [],
+      approvers: [],
+      clients: [],
+      newRequest: {
+        emplNo: "",
+        approver_id: 0,
+        is_billable: false,
+        client_id: 0,
+        site_id: 0,
+        division: "",
+        proj_code: 0,
+        topic: "",
+        description: "",
+        outbound_date: ""
+      }
     }
-    console.log(props.companyData);
-    this.submitRequest = this.submitRequest.bind(this)
-    this.updateNewRequest = this.updateNewRequest.bind(this)
-  }
-  componentWillReceiveProps({companyData}) {
-    this.setState({companyData})
-  }
-  updateNewRequest(e) {
-    let newRequest = this.state.newRequest
-    newRequest[e.target.name] = e.target.value
-    this.setState({newRequest: newRequest})
   }
 
+  componentDidMount(){
+    getEmployees(this.updateEmployees.bind(this))
+    getApprovers(this.updateApprovers.bind(this))
+    getClients(this.updateClients.bind(this))
+  }
+  updateEmployees(err, employeesArray) {
+    if (!err) {
+      this.setState({employees: employeesArray})
+    }
+  }
+  updateApprovers(err, approversArray){ //take from api and update into state
+    if (!err) {
+      this.setState({approvers: approversArray})
+    }
+  }
+  updateClients(err, clientsArray){
+    if (!err) {
+      this.setState({clients: clientsArray})
+    }
+  }
   submitRequest(e) {
-    // console.log(this.state);
     e.preventDefault()
-    this.props.saveRequest(this.state.newRequest)
-    // this.setState([e.target.name]: e.target.value)
-  }
+    let newRequest = this.state.newRequest
+    console.log(newRequest);
 
-  _renderEmplNo() {
-    return ((this.state.companyData.employees||[]).map(function(employee, i) {
-        return (
-         <option key={i} value={employee.employee_id}> {employee.emplNo}</option>
-        )
-    }))
   }
-  _renderEmplDivision() {
-    return ((this.state.companyData.employees||[]).map((empl, i)=> <option key={i}> {empl.division}</option>))
+  updateRequestState(e) {
+    let updatedRequest = this.state.newRequest
+    updatedRequest[e.target.name] = e.target.value
+    this.setState({newRequest: updatedRequest})
+    console.log(updatedRequest);
   }
-  _renderSite(sites) {
-    return((this.state.companyData.sites||[]).map(function(site, i) {
-      return <option key={i} value={site.site_id}> {site.name} </option>
-    }))
-  }
-  _renderClient() {
-    return((this.state.companyData.clients||[]).map((client, i) => <option key={i} value={client.client_id}> {client.name}</option>
-    ))
-  }
-  _renderProject() {
-    return((this.state.companyData.projects||[]).map((project, i) => <option key={i}> {project.proj_name} {project.proj_code}</option>
-    ))
-  }
-  _renderApprovers() {
-    return((this.state.companyData.approvers||[]).map((approver, i) => <option key={i} value={approver.approver_id}> {approver.name}</option>
-    ))
+  isTravelRequestValid(){
+    let tr = this.state.newRequest
+    return
+      tr.emplNo != "" &&
+      tr.approver_id != 0 &&
+      tr.client_id != 0 &&
+      tr.site_id != 0 &&
+      tr.division != "" &&
+      tr.proj_code != 0 &&
+      tr.topic != "" &&
+      tr.description != "" &&
+      tr.outbound_date != ""
+      //return true if valid or false
   }
 
   render () {
-    console.log(this.state);
     return (
-      <div className="content">
+      <div className="AddRequest-content">
         <form onSubmit={e => this.submitRequest(e)}>
 
-          <div className="form personalDet">
-            <label> Personal details </label><br/>
-            <input name="name" placeholder="name as in the passport" type="text" onChange={(e) => this.updateNewRequest(e)}/>
-            <select name="employee_id" onChange={(e) => this.updateNewRequest(e)}>
-              <option  selected disabled> employee number </option>
-              {this._renderEmplNo()}
-            </select>
-            <select name="division" onChange={(e) => this.updateNewRequest(e)}>
-              <option  selected disabled> division </option>
-              {this._renderEmplDivision()}
+          <div>
+            <h3>EMPLOYEE DETAILS</h3>
+            <select name="emplNo" onChange={(e) => this.updateRequestState(e)}>
+              <option selected disabled>Employee number</option>
+              {this.state.employees.map((employee)=>
+                <option key={employee.emplNo} value={employee.emplNo}>{employee.emplNo}</option>)}
             </select>
           </div>
 
-          <div className="form contactDet">
-            <label> Contact details </label><br/>
-            <input name="email" placeholder="email" type="text"
-              onChange={(e) => this.updateNewRequest(e)}
-              value={this.state.newRequest.email|| ((this.state.companyData.employees||[]).find(person => person.employee_id == this.state.newRequest.employee_id)||{}).email}
-            />
-            <input name="phone" placeholder="phone" type="text"
-              onChange={(e) => this.updateNewRequest(e)}
-              value={this.state.newRequest.phone|| ((this.state.companyData.employees||[]).find(person => person.employee_id == this.state.newRequest.employee_id)||{}).phone}
-            />
-          </div>
-
-          <div className="form clientDet">
-            <label> Client details </label><br/>
-            <select name="client" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> client name </option>
-              {this._renderClient()}
+          <div>
+            <h3>BILLING DETAILS</h3>
+            <select name="approver_id" onChange={(e) => this.updateRequestState(e)}>
+              <option selected disabled>approver name</option>
+              {this.state.approvers.map((approver)=>
+                <option key={approver.approver_id} value={approver.approver_id}>{approver.name}</option>)}
             </select>
-            <select name="project" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> project </option>
-              {this._renderProject()}
+            <select name="is_billable" onChange={(e) => this.updateRequestState(e)}>
+              <option selected disabled>is billable to customer?</option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </select>
+            <select name="client_id" onChange={(e) => this.updateRequestState(e)}>
+              <option selected disabled>client name</option>
+              {this.state.clients.map((client)=>
+                <option key={client.client_id} value={client.client_id}>{client.name}</option>)}
             </select>
           </div>
 
-          <div className="form paymentDet">
-            <label> Approval and payment details </label><br/>
-            <select name="approver" onChange={(e)=> this.updateNewRequest(e)}>
-              <option selected disabled>approver</option>
-              {this._renderApprovers(approvers)}
-            </select>
-            <select name="isBillable" onChange={(e)=> this.updateNewRequest(e)}>
-              <option disabled> is billable to customer?</option>
-              <option value={true}> Yes </option>
-              <option value={false}> No </option>
-            </select>
-            <select name="site" onChange={(e) => this.updateNewRequest(e)}>
-              <option selected disabled> site </option>
-              {this._renderSite()}
-            </select>
+          <div>
+            <h3>TRAVEL DETAILS</h3>
+            <input name="outbound_date" type="date" onChange={(e) => this.updateRequestState(e)}></input> <br />
+            Subject:<br/>
+            <input type="text" name="topic" onChange={(e) => this.updateRequestState(e)}/><br/>
+            Description:<br/>
+            <textarea name="description" rows="15" cols="80" onChange={(e) => this.updateRequestState(e)}></textarea>
           </div>
 
-          <p>Hello {this.state.newRequest.name}, please provide more details regarding your travel:</p>
-          <textarea className="form-description" rows="10" cols="100" name="description" placeholder="" type="edit" onChange={(e) => this.updateNewRequest(e)}/><br/>
-
-          <input type="submit" value="submit a new request"/>
-
+          <input type="submit" value="Submit new request"/>
         </form>
       </div>
 
     )
   }
+}
+
+export default AddRequest
+
+{
+/*
+EMPLOYEE DETAILS
+table.string('emplNo')  + inne z employees, contact itd
+
+BILLING
+table.integer('approver_id')
+table.boolean('is_billable')
+table.integer('proj_code')  + name
+table.integer('client_id')
+
+TRAVEL D
+table.date('outbound_date')
+table.string('topic')
+table.text('description')
+*/
 }

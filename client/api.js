@@ -2,23 +2,12 @@ import request from 'superagent'
 
 var requestUrl = '/v1'
 
-//example of an api request function on client side
-
-// export function getSomething(callback) {
-//   request
-//     .get(requestUrl)
-//     .end((err, res) => {
-//       if (err) callback(err)
-//       else callback(null, res.body)
-//     })
-// }
-
 export function getApprovers(callback) {
   request
     .get(requestUrl + '/approvers')
     .end((err, res) => {
       if (err) callback(err)
-      else callback(null, res.body, 'approvers')
+      else callback(null, res.body)
     })
 }
 export function getClients(callback) {
@@ -26,7 +15,7 @@ export function getClients(callback) {
     .get(requestUrl + '/clients')
     .end((err, res) => {
       if (err) callback(err)
-      else callback(null, res.body, 'clients')
+      else callback(null, res.body)
     })
 }
 export function getEmployees(callback) {
@@ -34,7 +23,7 @@ export function getEmployees(callback) {
     .get(requestUrl + '/employees')
     .end((err, res) => {
       if (err) callback(err)
-      else callback(null, res.body, 'employees')
+      else callback(null, res.body)
     })
 }
 export function getProjects(callback) {
@@ -70,4 +59,10 @@ export function getRequest(requestId, callback) {
       if (err) callback(err)
       else callback(null, res.body)
     })
+}
+
+// -------
+
+export function submitNewRequest(requestData, callback){
+  request 
 }

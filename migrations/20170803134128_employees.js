@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('name')
     table.string('emplNo')
     table.string('position')
-    table.string('site')
+    table.string('site_id')
     table.string('division')
     table.string('phone')
     table.string('email')

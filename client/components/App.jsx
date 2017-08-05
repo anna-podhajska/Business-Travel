@@ -66,7 +66,7 @@ requestSites(){
             <div className="main-contents container">
               <Route path = "/" component={Home} />
               <Route path = "/allRequests" component={RequestsAll} />
-              <Route path = "/submit" render={(props) => <AddRequest saveRequest={this.saveRequest.bind(this)} companyData={this.state.companyData}/> } />
+              <Route path = "/submit" component={AddRequest} />
               <Router path = "/clients" component={Clients} />
               <Route path = "/requestView/:id" component={(props) => <RequestView request_id={props.match.params.id}/>} />
             </div>
