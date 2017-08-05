@@ -57,13 +57,13 @@ requestSites(){
 
   render() {
     return (
-      <div className="home-container">
+      <div>
         <Router>
-          <div className="container">
+          <div className="page-container">
             <div className="nav-bar">
               <Route path = "/" component={() => <NavBar pathHome="/"  pathSubmit="/submit" pathAllRequests="/allRequests" />} />
             </div>
-            <div className="main-contents">
+            <div className="main-contents container">
               <Route path = "/" component={Home} />
               <Route path = "/allRequests" component={RequestsAll} />
               <Route path = "/submit" render={(props) => <AddRequest saveRequest={this.saveRequest.bind(this)} companyData={this.state.companyData}/> } />

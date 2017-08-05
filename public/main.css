@@ -25,6 +25,29 @@ h1 {
 .AllRequests-request {
   text-align: center;
 }
+
+/*--------table on RequestsAll component:*/
+.RequestsAll-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.RequestsAll-link {
+  text-decoration: none;
+}
+/*------------*/
+
+
 .CliList {
   text-align: right;
 }
@@ -37,6 +60,7 @@ h1 {
   position: fixed;
   top: 0;
   bottom: 0;
+  margin-left: 0;
   padding: 3px;
   width: 25%;
   background-color: #444C5C;
@@ -59,11 +83,10 @@ h1 {
 }
 
 .nav-bar {
-
 }
 
 .nav-button {
-  display: inline-block;
+  /*display: inline-block;*/
   zoom: 1;
   white-space: nowrap;
   vertical-align: middle;

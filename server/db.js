@@ -20,7 +20,7 @@ function getSites(connection) {
 }
 
 function getRequests(connection) {
-  return connection('travelRequests')
+  return connection('travelRequests').orderBy("outbound_date", "desc")
 }
 
 function getRequest(connection, id) {

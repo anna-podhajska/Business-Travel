@@ -64,8 +64,10 @@ class RequestView extends React.Component{
         Topic: {request.topic} <br />
         <hr />
         Description: {request.description} <br />
+        <hr />
         <div className="RequestView-approval">
-          <select default={request.approval_status}>
+          <select>
+            <option disabled selected="default={request.approval_status}">{request.approval_status}</option>
             <option value="pending_approval">pending approval</option>
             <option value="approved">approved</option>
             <option value="declined">declined</option>
