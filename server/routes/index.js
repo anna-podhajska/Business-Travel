@@ -62,7 +62,14 @@ router.get('/travelRequests', (req, res) => {
       res.status(500).send(err + ' SERVER ERROR')
     })
 })
-
+//odpowiedz do klienta czy update sie udal
+router.put('/travelRequest/:id/approvalStatus', (req, res) => {
+  db.updateApprovalStatus(req.app.get('db'), req.params.id, req.body)
+  .then(() => res.status(200).send())
+  .catch(err => {
+    res.status(500).send(err + 'SERVER ERROR')
+  })
+})
 router.get('/travelRequest/:id', (req, res) => {
   db.getRequest(req.app.get('db'), req.params.id)
     .then(travelRequest => {
@@ -72,7 +79,6 @@ router.get('/travelRequest/:id', (req, res) => {
       res.status(500).send(err + ' SERVER ERROR')
     })
 })
-
 //new request submitted api:
 router.post('/travelRequest', (req, res) => {
   db.createNewRequest(req.app.get('db'), req.body)

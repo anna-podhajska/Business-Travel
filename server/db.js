@@ -8,7 +8,11 @@ function getClients(connection) {
 }
 
 function getEmployees(connection) {
-  return connection('employees').orderBy("emplNo", "asc")
+  return connection('employees')
+  .join("sites", "employees.site_id", "=", "sites.site_id")
+  .select("employees.*", "sites.name as site_name")
+  .orderBy("emplNo", "asc")
+
 }
 
 function getProjects(connection) {
@@ -20,7 +24,7 @@ function getSites(connection) {
 }
 
 function getRequests(connection) {
-  return connection('travelRequests').orderBy("outbound_date", "desc")
+  return connection('travelRequests').orderBy("request_id", "desc")
 }
 
 function getRequest(connection, id) {
@@ -47,12 +51,16 @@ function getRequest(connection, id) {
   .where("travelRequests.request_id", id)
   .first()
 } //because it will return arr with 1 obj
-
-
 function createNewRequest(connection, requestData) {
   return connection ("travelRequests")
   .insert(requestData)
 }
+function updateApprovalStatus(connection, requestId, newApprovalStatus){
+  return connection ("travelRequests")
+  .where("request_id", requestId)
+  .update(newApprovalStatus)
+}
+
 
 module.exports = {
   getApprovers,
@@ -62,5 +70,6 @@ module.exports = {
   getSites,
   getRequests,
   getRequest,
-  createNewRequest
+  createNewRequest,
+  updateApprovalStatus
 }

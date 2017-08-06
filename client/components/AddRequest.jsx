@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {getEmployees, getApprovers, getClients, getProjects, getSites, getEm} from '../api'
+import {getEmployees, getApprovers, getClients, submitNewRequest, getProjects} from '../api'
 
 
 class AddRequest extends React.Component {
@@ -11,25 +11,27 @@ class AddRequest extends React.Component {
       employees: [],
       approvers: [],
       clients: [],
+      projects: [],
       newRequest: {
         emplNo: "",
-        approver_id: 0,
+        approver_id: "0",
         is_billable: false,
-        client_id: 0,
+        client_id: "0",
         site_id: 0,
-        division: "",
+        division: "none",
         proj_code: 0,
         topic: "",
         description: "",
-        outbound_date: ""
-      }
+        outbound_date: "",
+      },
+      site_name: "none"
     }
   }
-
   componentDidMount(){
     getEmployees(this.updateEmployees.bind(this))
     getApprovers(this.updateApprovers.bind(this))
     getClients(this.updateClients.bind(this))
+    getProjects(this.updateProjects.bind(this))
   }
   updateEmployees(err, employeesArray) {
     if (!err) {
@@ -46,11 +48,26 @@ class AddRequest extends React.Component {
       this.setState({clients: clientsArray})
     }
   }
+  updateProjects(err, projectsArray){
+    if (!err) {
+      this.setState({projects: projectsArray})
+    }
+  }
   submitRequest(e) {
     e.preventDefault()
     let newRequest = this.state.newRequest
-    console.log(newRequest);
-
+    if (this.isTravelRequestValid()) {
+      submitNewRequest(newRequest, this.displaySubmittionStatus.bind(this))
+    } else {
+      console.log('Travel request invalid ', newRequest);
+    }
+  }
+  displaySubmittionStatus(err) {
+    if (err) {
+      alert("error submitting request")
+    } else {
+      alert("new request submitted")
+    }
   }
   updateRequestState(e) {
     let updatedRequest = this.state.newRequest
@@ -58,18 +75,30 @@ class AddRequest extends React.Component {
     this.setState({newRequest: updatedRequest})
     console.log(updatedRequest);
   }
+  updateRequestStateForEmployee(e){
+    this.updateRequestState(e)
+    let updatedRequest = this.state.newRequest
+    let emplNo = updatedRequest.emplNo
+    let employeeDetails = this.state.employees.find((emp) => emp.emplNo === emplNo)
+    updatedRequest.division = employeeDetails.division
+    updatedRequest.site_id = employeeDetails.site_id
+    this.setState(
+      {newRequest: updatedRequest,
+      site_name: employeeDetails.site_name})
+  }
   isTravelRequestValid(){
     let tr = this.state.newRequest
-    return
-      tr.emplNo != "" &&
-      tr.approver_id != 0 &&
-      tr.client_id != 0 &&
-      tr.site_id != 0 &&
-      tr.division != "" &&
-      tr.proj_code != 0 &&
-      tr.topic != "" &&
-      tr.description != "" &&
-      tr.outbound_date != ""
+    return (
+      tr.approver_id !== "0" &&
+      tr.client_id !== "0" &&
+      tr.description !== "" &&
+      tr.division !== "none" &&
+      tr.emplNo !== "" &&
+      tr.outbound_date !== "" &&
+      tr.proj_code !== 0 &&
+      tr.site_id !== 0 &&
+      tr.topic !== ""
+    )
       //return true if valid or false
   }
 
@@ -80,11 +109,12 @@ class AddRequest extends React.Component {
 
           <div>
             <h3>EMPLOYEE DETAILS</h3>
-            <select name="emplNo" onChange={(e) => this.updateRequestState(e)}>
+            <select name="emplNo" onChange={(e) => this.updateRequestStateForEmployee(e)}>
               <option selected disabled>Employee number</option>
               {this.state.employees.map((employee)=>
                 <option key={employee.emplNo} value={employee.emplNo}>{employee.emplNo}</option>)}
             </select>
+            <span>Site: {this.state.site_name}, Division: {this.state.newRequest.division}</span>
           </div>
 
           <div>
@@ -103,6 +133,11 @@ class AddRequest extends React.Component {
               <option selected disabled>client name</option>
               {this.state.clients.map((client)=>
                 <option key={client.client_id} value={client.client_id}>{client.name}</option>)}
+            </select>
+            <select name="proj_code" onChange={(e) => this.updateRequestState(e)}>
+              <option selected disabled>project name</option>
+              {this.state.projects.map((project)=>
+              <option key={project.proj_code} value={project.proj_code}>{project.proj_name}</option>)}
             </select>
           </div>
 

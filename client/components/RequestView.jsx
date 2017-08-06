@@ -1,5 +1,5 @@
 import React from 'react'
-import {getRequest} from "../api"
+import {getRequest, updateRequestApprovalStatus} from "../api"
 
 class RequestView extends React.Component{
 
@@ -26,15 +26,29 @@ class RequestView extends React.Component{
       }
     }
   }
-
   componentDidMount(){
     getRequest(this.props.request_id, this.updateRequest.bind(this))
   }
-
+  updateApprovalStatus(e){
+    let approval_status = e.target.value
+    updateRequestApprovalStatus(
+      this.state.travelRequest.request_id,
+      {approval_status: e.target.value},
+      (err) => {
+        if (!err) {
+          let tr = this.state.travelRequest
+          tr.approval_status = approval_status
+          this.setState({travelRequest: tr})
+        } else {
+          console.log(err)
+        }
+      }
+    )
+  }
   updateRequest(err, travelRequestData){
     if (!err) {
       console.log(travelRequestData);
-      this.setState({travelRequest: travelRequestData})
+      this.setState({travelRequest: travelRequestData}) //podstawiamy w this.state dane z DB
     }
   }
 
@@ -66,7 +80,7 @@ class RequestView extends React.Component{
         Description: {request.description} <br />
         <hr />
         <div className="RequestView-approval">
-          <select>
+          <select name="approval_status" onChange={(e)=> this.updateApprovalStatus(e)}>
             <option disabled selected="default={request.approval_status}">{request.approval_status}</option>
             <option value="pending_approval">pending approval</option>
             <option value="approved">approved</option>

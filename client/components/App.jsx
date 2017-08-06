@@ -7,53 +7,11 @@ import RequestView from "./RequestView"
 import Home from "./Home"
 import Clients from "./Clients"
 
-import {getApprovers, getClients, getEmployees, getProjects, getSites} from '../api'
-
-
 class App extends React.Component {
 
   constructor(props) {
     super(props)
-     this.state= {
-       companyData: {
-       }
-     }
   }
-
-saveRequest(request) {
-  this.setState({
-    requests: [...this.state.requests, request]
-  })
-}
-componentDidMount() {
-
-  this.requestApprovers()
-  this.requestClients()
-  this.requestEmployees()
-  this.requestProjects()
-  this.requestSites()
-}
-saveData(err, data, name) {
-  let companyData = this.state.companyData
-  companyData[name] = data
-  this.setState({err, companyData})
-}
-requestApprovers() {
-  getApprovers(this.saveData.bind(this))
-}
-requestClients() {
-  getClients(this.saveData.bind(this))
-}
-requestEmployees(){
-  getEmployees(this.saveData.bind(this))
-}
-requestProjects(){
-  getProjects(this.saveData.bind(this))
-}
-requestSites(){
-  getSites(this.saveData.bind(this))
-}
-
 
   render() {
     return (
