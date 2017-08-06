@@ -8,7 +8,7 @@ export default function (props) {
         <div className="nav-logo-container">
           <h1>`we can do it better` ;-)</h1>
           <img src="Sunglasses-Emoji.png" />
-          <h3>company</h3>
+          <h1>company</h1>
         </div>
       </div>
     </div>
