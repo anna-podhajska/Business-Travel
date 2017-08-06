@@ -17,12 +17,12 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <div className="page-container">
-            <div className="nav-bar">
+          <div className="app-page-container">
+            <div className="app-nav-bar">
               <Route path = "/" component={() => <NavBar pathHome="/"  pathSubmit="/submit" pathAllRequests="/allRequests" />} />
             </div>
-            <div className="main-contents container">
-              <Route path = "/" component={Home} />
+            <div className="app-contents">
+              <Route exact path = "/" component={Home} />
               <Route path = "/allRequests" component={RequestsAll} />
               <Route path = "/submit" component={AddRequest} />
               <Router path = "/clients" component={Clients} />

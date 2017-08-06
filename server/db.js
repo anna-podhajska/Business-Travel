@@ -38,7 +38,7 @@ function getRequest(connection, id) {
     "request_id",
     "employees.*",
     "travelRequests.proj_code as proj_code",
-    "approvers.name",
+    "approvers.name as approver_name",
     "is_billable",
     "sites.name as site_name",
     "description",

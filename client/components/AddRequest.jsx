@@ -1,4 +1,5 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
 
 import {getEmployees, getApprovers, getClients, submitNewRequest, getProjects} from '../api'
 
@@ -24,7 +25,9 @@ class AddRequest extends React.Component {
         description: "",
         outbound_date: "",
       },
-      site_name: "none"
+      site_name: "none",
+      selected_employee: {},
+      perform_redirect: false
     }
   }
   componentDidMount(){
@@ -66,17 +69,17 @@ class AddRequest extends React.Component {
     if (err) {
       alert("error submitting request")
     } else {
-      alert("new request submitted")
+      this.setState({perform_redirect: true})
     }
   }
   updateRequestState(e) {
     let updatedRequest = this.state.newRequest
     updatedRequest[e.target.name] = e.target.value
     this.setState({newRequest: updatedRequest})
-    console.log(updatedRequest);
   }
   updateRequestStateForEmployee(e){
     this.updateRequestState(e)
+
     let updatedRequest = this.state.newRequest
     let emplNo = updatedRequest.emplNo
     let employeeDetails = this.state.employees.find((emp) => emp.emplNo === emplNo)
@@ -84,8 +87,9 @@ class AddRequest extends React.Component {
     updatedRequest.site_id = employeeDetails.site_id
     this.setState(
       {newRequest: updatedRequest,
-      site_name: employeeDetails.site_name})
-  }
+      site_name: employeeDetails.site_name,
+      selected_employee: employeeDetails}
+  )}
   isTravelRequestValid(){
     let tr = this.state.newRequest
     return (
@@ -103,22 +107,46 @@ class AddRequest extends React.Component {
   }
 
   render () {
+    const perform_redirect = this.state.perform_redirect
+
+    if (perform_redirect === true) {
+      return (
+        <Redirect to="/allRequests" />
+      )
+    }
+
     return (
       <div className="AddRequest-content">
-        <form onSubmit={e => this.submitRequest(e)}>
 
-          <div>
-            <h3>EMPLOYEE DETAILS</h3>
-            <select name="emplNo" onChange={(e) => this.updateRequestStateForEmployee(e)}>
-              <option selected disabled>Employee number</option>
-              {this.state.employees.map((employee)=>
+        <div className="AddRequest-box">
+          <h1 className="AddRequest-title"> New travel request </h1>
+        </div>
+        <form onSubmit={e => this.submitRequest(e)}>
+          <div className="AddRequest-box emplDetailsBox">
+
+            <div className="AddRequest-selectEmplNo">
+              <h3>Employee details</h3>
+              <select name="emplNo" onChange={(e) => this.updateRequestStateForEmployee(e)}>
+                <option selected disabled>Employee number</option>
+                {this.state.employees.map((employee)=>
                 <option key={employee.emplNo} value={employee.emplNo}>{employee.emplNo}</option>)}
-            </select>
-            <span>Site: {this.state.site_name}, Division: {this.state.newRequest.division}</span>
+              </select>
+            </div>
+            <div className="AddRequest-emplDetails-results">
+              <ul>
+                <li>Site: {this.state.site_name}</li>
+                <li>Division: {this.state.newRequest.division}</li>
+                <li>Position: {this.state.selected_employee.position || ""}</li>
+                <li>Phone: {this.state.selected_employee.phone || ""}</li>
+                <li>Email: {this.state.selected_employee.email || ""}</li>
+                <li>Name: {this.state.selected_employee.name || ""}</li>
+              </ul>
+            </div>
+
           </div>
 
-          <div>
-            <h3>BILLING DETAILS</h3>
+          <div className="AddRequest-box">
+            <h3>Billing details</h3>
             <select name="approver_id" onChange={(e) => this.updateRequestState(e)}>
               <option selected disabled>approver name</option>
               {this.state.approvers.map((approver)=>
@@ -141,19 +169,20 @@ class AddRequest extends React.Component {
             </select>
           </div>
 
-          <div>
-            <h3>TRAVEL DETAILS</h3>
+          <div className="AddRequest-box">
+            <h3>Travel details</h3>
             <input name="outbound_date" type="date" onChange={(e) => this.updateRequestState(e)}></input> <br />
             Subject:<br/>
-            <input type="text" name="topic" onChange={(e) => this.updateRequestState(e)}/><br/>
+            <input className="AddRequest-inp-subj" type="text" name="topic"
+              onChange={(e) => this.updateRequestState(e)}/><br/>
             Description:<br/>
-            <textarea name="description" rows="15" cols="80" onChange={(e) => this.updateRequestState(e)}></textarea>
+            <textarea className="AddRequest-inp-message" name="description" rows="15" cols="80"
+              onChange={(e) => this.updateRequestState(e)}></textarea>
           </div>
 
           <input type="submit" value="Submit new request"/>
         </form>
       </div>
-
     )
   }
 }

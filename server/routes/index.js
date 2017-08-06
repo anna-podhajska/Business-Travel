@@ -82,7 +82,7 @@ router.get('/travelRequest/:id', (req, res) => {
 //new request submitted api:
 router.post('/travelRequest', (req, res) => {
   db.createNewRequest(req.app.get('db'), req.body)
-  .then(res.status(200))
+  .then(() => res.status(200).send())
   .catch(err => {
     res.status(500).send(err + 'SERVER ERROR')
   })

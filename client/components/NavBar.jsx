@@ -3,10 +3,9 @@ import {Link} from 'react-router-dom'
 
 export default function (props) {
   return (
-    <div className="container">
-      <div className="sideBar">
-
-        <Link to="/" className="home-link"><h1>Company business travel platform</h1></Link>
+    <div className="nav-container">
+      <div className="nav-sideBar">
+        <Link to="/" className="nav-home-link"><h1>Business travel platform</h1></Link>
           <ul>
             <li><Link className="nav-button" to={props.pathHome}>home</Link></li>
             <li><Link className="nav-button" to={props.pathSubmit}> submit a new request</Link></li>

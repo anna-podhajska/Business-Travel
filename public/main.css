@@ -1,6 +1,8 @@
 body {
   font-family: sans-serif;
-  background-color: lightgray;
+  background-color: #fcfcfc;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: 'Lato', sans-serif;*/
 }
 * {
   box-sizing: border-box;
@@ -13,50 +15,118 @@ select, input {
 h1 {
   font-size: 1em;
 }
-.form {
-  margin-top: 2rem;
+h1, h3 {
+  margin: 0.67em 0;
 }
-
-.request {
-  margin-left: 20px;
-  margin-right: 20px;
-
+ul {
+  list-style: none;
 }
-.AllRequests-request {
+select {
+  width: 200px;
+  font-family: 'Lato', sans-serif;
   text-align: center;
-}
-
-/*--------table on RequestsAll component:*/
-.RequestsAll-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-.RequestsAll-link {
+  /*display: inline-block;*/
+  height: 28px;
+  padding: 0 30px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
   text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  cursor: pointer;
+  width: 13rem;
+  box-sizing: border-box;
 }
-/*------------*/
+.color1 {
+  color: #F55449;
+}
+/*-------APP component*/
+.app-nav-bar {}
+.app-page-container{}
+.app-contents {
+  width: 75%;
+  padding: 2em 3em 0;
+  margin-left: 25%;
+  margin-top: 0;
+  padding-top: 0;
+  text-align: left;
+}
+/*---------shared in components*/
+.RequestsAll-title,
+.AddRequest-title{
+  text-transform: uppercase;
+}
+.RequestsAll-content,
+.AddRequest-content,{}
+.AddRequest-inp-subj{
+  width: 100%;
+}
+.AddRequest-inp-message{
+  width: 100%;
+}
+/*---------RequesView comp*/
+.RequestView-pgeTitle{
+  background-color: #FBCD4B;
+  height: 2rem;
+}
 
+.RequestView-contactDetails{}
+.RequestView-billingDetails{}
+.RequestView-dateDetails{}
 
-.CliList {
-  text-align: right;
+.RequestView-topicDetails,
+.RequestView-approval {
+  padding-top: 2rem;
 }
-.home-container {
+/*---------AddRequest component*/
+.emplDetailsBox {
+  display: flex;
+  width: 100%;
 }
-.home-link {
+.AddRequest-selectEmplNo{
+  width: 25%;
+}
+.AddRequest-emplDetails-results{
+  width: 75%;
+  margin-left: 25%;
+}
+.RequestsAll-box,
+.AddRequest-box,
+.RequestView-box{
+  margin-top: 4px;
+  box-shadow:1px 1px 2px 0px rgba(50, 50, 50, 0.75);
+  background-color: #f4f4f4;
+  line-height: 130%;
+}
+h3, h4 {
+  color: #882426;
+  margin: 0;
+  padding: 0;
+}
+/*---------Home component*/
+.home-items{}
+/*-------NavBar component*/
+.nav-home-link {
   text-decoration: none;
+  color: white;
 }
-.sideBar {
+.nav-logo-container{
+  width: 150px;
+  height: 150;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 1rem;
+  color: black;
+  border: 1px solid white;
+  margin: auto;
+}
+.nav-logo-container img {
+  width: 80px;
+}
+.nav-sideBar {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -68,23 +138,8 @@ tr:nth-child(even) {
   font-size: 2rem;
   text-transform: uppercase;
   text-align: right;
+  color: white
 }
-.sideBar a {
-  color: white;
-}
-.sideBar ul {
-  list-style: none;
-}
-.main-contents {
-  width: 75%;
-  padding: 2em 3em 0;
-  margin-left: 25%;
-  text-align: left;
-}
-
-.nav-bar {
-}
-
 .nav-button {
   /*display: inline-block;*/
   zoom: 1;
@@ -93,7 +148,6 @@ tr:nth-child(even) {
   text-align: center;
   cursor: pointer;
   -webkit-user-drag: none;
-  background: transparent;
   border: 1px solid rgb(176, 202, 219);
   color: #fff;
   margin-top: 1em;
@@ -102,4 +156,60 @@ tr:nth-child(even) {
   font-size: 50%;
   padding: 3px;
   text-decoration: none;
+  list-style: none;
+}
+
+/*---------RequestsAll component-*/
+.RequestsAll-title{
+  background-color: #dddddd;
+  color: black;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: bottom;
+  padding: 0;
+  margin-top: 0;
+  height: 2rem;
+  width: 150%;
+  margin-left: -25%;
+  height: 50px;
+}
+.RequestsAll-title h1 {
+  margin: 0;
+  padding-top: 1rem;
+}
+.form {
+  margin-top: 2rem;
+}
+.request {
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+.AllRequests-request {
+  text-align: center;
+}
+/*--------table on RequestsAll component:*/
+.RequestsAll-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 0;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.RequestsAll-link {
+  text-decoration: none;
+}
+/*------------*/
+
+
+.CliList {
+  text-align: right;
 }
