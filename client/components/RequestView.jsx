@@ -90,9 +90,9 @@ class RequestView extends React.Component{
         </div>
         <div className="RequestView-topicDetails RequestView-box">
           <h4>Description</h4>
-          Topic: {request.topic} <br />
-          Description: {request.description} <br />
-          Date created: {request.created_at} <br />
+            <p>Topic: {request.topic}</p>
+            <p> Description: {request.description}</p>
+            <p><i> Date created: {request.created_at}</i></p>
         </div>
         <div className="RequestView-approval RequestView-box">
           <h4 className="color1">Change approval status:</h4>

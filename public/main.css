@@ -21,9 +21,10 @@ h1, h3 {
 }
 ul {
   list-style: none;
+  padding-left: 0;
 }
 select {
-  width: 200px;
+  /*width: 200px;*/
   font-family: 'Lato', sans-serif;
   text-align: center;
   /*display: inline-block;*/
@@ -38,11 +39,11 @@ select {
   white-space: nowrap;
   background-color: transparent;
   cursor: pointer;
-  width: 13rem;
+  width: 15rem;
   box-sizing: border-box;
 }
 .color1 {
-  color: #F55449;
+  color: #5ed9ff;
 }
 /*-------APP component*/
 .app-nav-bar {}
@@ -77,31 +78,36 @@ select {
 .RequestView-dateDetails{}
 
 .RequestView-topicDetails,
-.RequestView-approval {
-  padding-top: 2rem;
-}
+.RequestView-approval {}
 /*---------AddRequest component*/
 .emplDetailsBox {
   display: flex;
   width: 100%;
 }
 .AddRequest-selectEmplNo{
-  width: 25%;
+  width: 50%;
 }
 .AddRequest-emplDetails-results{
-  width: 75%;
-  margin-left: 25%;
+  width: 50%;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: transparent;
+  box-sizing: border-box;
 }
 .RequestsAll-box,
 .AddRequest-box,
 .RequestView-box{
-  margin-top: 4px;
+  margin-top: 10px;
   box-shadow:1px 1px 2px 0px rgba(50, 50, 50, 0.75);
   background-color: #f4f4f4;
   line-height: 130%;
 }
 h3, h4 {
-  color: #F55449;
   margin: 0;
   padding: 0;
   font-weight: 300;
@@ -109,6 +115,13 @@ h3, h4 {
   letter-spacing: -.08rem;
   font-size: 1rem;
 }
+.AddRequest-content h3, h4 {
+    color: #a33f78;
+}
+.RequestView-container h3, h4 {
+    color: #3e7ea2;
+}
+
 /*---------Home component*/
 .home-items{}
 /*-------NavBar component*/
@@ -144,26 +157,6 @@ h3, h4 {
   color: white
 }
 .nav-button {
-  /*display: inline-block;*/
-  /*zoom: 1;
-  white-space: nowrap;
-  vertical-align: middle;
-  text-align: center;
-  cursor: pointer;
-  -webkit-user-drag: none;
-  border: 1px solid rgb(176, 202, 219);
-  color: #fff;
-  margin-top: 1em;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 50%;
-  padding: 3px;
-  text-decoration: none;
-  list-style: none;
-  width: 200px;
-  font-family: 'Lato', sans-serif;
-  text-align: center;*/
-  /*display: inline-block;*/
   height: 28px;
   padding: 0 30px;
   font-size: 15px;
@@ -186,23 +179,10 @@ margin: 0 4px;*/
 }
 
 /*---------RequestsAll component-*/
-.RequestsAll-title{
-  background-color: #dddddd;
-  color: black;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  text-align: center;
-  vertical-align: bottom;
-  padding: 0;
-  margin-top: 0;
-  height: 2rem;
-  width: 150%;
-  margin-left: -25%;
-  height: 50px;
-}
 .RequestsAll-title h1 {
   margin: 0;
   padding-top: 1rem;
+  text-transform: uppercase;
 }
 .form {
   margin-top: 2rem;
@@ -211,9 +191,6 @@ margin: 0 4px;*/
   margin-left: 20px;
   margin-right: 20px;
 
-}
-.AllRequests-request {
-  text-align: center;
 }
 /*--------table on RequestsAll component:*/
 .RequestsAll-table {
