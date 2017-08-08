@@ -77,6 +77,13 @@ class AddRequest extends React.Component {
     updatedRequest[e.target.name] = e.target.value
     this.setState({newRequest: updatedRequest})
   }
+  updateRequestOutboundDate(e) {
+    let updatedRequest = this.state.newRequest
+    let newDate = new Date (e.target.value)
+    newDate = newDate.toISOString().split('T')[0]
+    updatedRequest[e.target.name] = e.target.value
+    this.setState({newRequest: updatedRequest})
+  }
   updateRequestStateForEmployee(e){
     this.updateRequestState(e)
 
@@ -171,7 +178,7 @@ class AddRequest extends React.Component {
 
           <div className="AddRequest-box">
             <h3>Travel details</h3>
-            <input name="outbound_date" type="date" onChange={(e) => this.updateRequestState(e)}></input> <br />
+            <input name="outbound_date" type="date" onChange={(e) => this.updateRequestOutboundDate(e)}></input> <br />
             Subject:<br/>
             <input className="AddRequest-inp-subj" type="text" name="topic"
               onChange={(e) => this.updateRequestState(e)}/><br/>
