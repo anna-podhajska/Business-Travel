@@ -1,8 +1,8 @@
 import React from 'react'
 import {getRequest, updateRequestApprovalStatus} from "../api"
+import {toDateOnly, toDateAndHour} from "../util/dateFormat"
 
 class RequestView extends React.Component{
-
   constructor(props)  {
     super(props)
     this.state = {

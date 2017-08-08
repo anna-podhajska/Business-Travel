@@ -2,6 +2,7 @@ import React from 'react'
 import {HashRouter as Router, Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import {getRequests} from "../api"
+import {toDateOnly, toDateAndHour} from "../util/dateFormat"
 
 class RequestsAll extends React.Component {
 
@@ -48,8 +49,8 @@ class RequestsAll extends React.Component {
               (request) => (<tr>
                 <td>{request.request_id}</td>
                 <td><Link key={request.request_id.toString()} to={"/requestView/" + request.request_id}>{request.topic}</Link></td>
-                <td>{request.created_at}</td>
-                <td>{request.outbound_date}</td>
+                <td>{toDateAndHour(request.created_at)}</td>
+                <td>{toDateOnly(request.outbound_date)}</td>
                 <td>{request.approval_status}</td>
             </tr>)
           )}
