@@ -23,15 +23,18 @@
       "react"
     ]
   },
+
   "author": "EDA",
   "license": "ISC",
+
   "devDependencies": {
     "react-addons-test-utils": "^15.4.2",
     "enzyme": "^2.7.0",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.11.0"
   },
+
   "dependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
