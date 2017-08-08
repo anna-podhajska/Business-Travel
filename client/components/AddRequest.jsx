@@ -81,7 +81,7 @@ class AddRequest extends React.Component {
     let updatedRequest = this.state.newRequest
     let newDate = new Date (e.target.value)
     newDate = newDate.toISOString().split('T')[0]
-    updatedRequest[e.target.name] = e.target.value
+    updatedRequest[e.target.name] = newDate
     this.setState({newRequest: updatedRequest})
   }
   updateRequestStateForEmployee(e){
