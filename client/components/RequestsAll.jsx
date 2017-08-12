@@ -20,14 +20,12 @@ class RequestsAll extends React.Component {
       this.setState({requests: requestsFromDB})
     }
   }
-
   // mappingOver(item){
   //   return
   //   {this.state.requests.map((request) =>
   //     <Link key={request.request_id.toString()} to={"/requestView/" + request.request_id}>
   //     <span className="RequestsAll-request">{item}</span> </Link>)}
   // }
-
   render() {
     return (
       <div className="RequestsAll-content">
