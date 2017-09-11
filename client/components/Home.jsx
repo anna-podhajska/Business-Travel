@@ -5,10 +5,8 @@ export default function (props) {
   return (
     <div className="home-container">
       <div className="home-items">
-        <div className="nav-logo-container">
-          <h1>`we can do it better` ;-)</h1>
-          <img src="Sunglasses-Emoji.png" />
-          <h1>company</h1>
+        <div>
+          <h1>Business Travel System</h1>
         </div>
       </div>
     </div>
