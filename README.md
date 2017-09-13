@@ -6,7 +6,7 @@ Then:
 - npm install
 - npm run
 
-## Personal project - company business travel system prototype
+## Description
 personal project that started on the 4th week of bootcamp, work in progress
 
 ## As a user I want:
