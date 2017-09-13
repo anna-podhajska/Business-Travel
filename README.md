@@ -1,3 +1,9 @@
+### Install:
+Clone this repo: git clone https://github.com/anna-podhajska/Business-Travel
+Then:
+- cd Business-Travel
+- npm install
+
 ## Personal project - company business travel system prototype
 personal project started on the 4th week of bootcamp, work in progress
 
