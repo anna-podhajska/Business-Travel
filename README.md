@@ -4,9 +4,10 @@ Clone this repo: git clone https://github.com/anna-podhajska/Business-Travel
 Then:
 - cd Business-Travel
 - npm install
+- npm run
 
 ## Personal project - company business travel system prototype
-personal project started on the 4th week of bootcamp, work in progress
+personal project that started on the 4th week of bootcamp, work in progress
 
 ## As a user I want:
 - create a travel request for travel desk that can be approved by my manager
