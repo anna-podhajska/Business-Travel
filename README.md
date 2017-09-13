@@ -1,5 +1,6 @@
 ### Install:
 Clone this repo: git clone https://github.com/anna-podhajska/Business-Travel
+
 Then:
 - cd Business-Travel
 - npm install
