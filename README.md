@@ -7,7 +7,8 @@ Then:
 - npm run
 
 ## Description
-personal project that started on the 4th week of bootcamp, work in progress
+personal project that started on the 4th week of bootcamp, 
+work in progress
 
 ## As a user I want:
 - create a travel request for travel desk that can be approved by my manager
@@ -41,5 +42,5 @@ personal project that started on the 4th week of bootcamp, work in progress
 - see location of all travelling people at defined time
 - be able to estimate the miles flown in order to estimate CO2 emissions
 
-### Deployment on heroku:
+### Deployment on Heroku:
 https://business-travel.herokuapp.com/
