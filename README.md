@@ -32,11 +32,11 @@ ongoing personal project, work in progress
 - add billing details to the request as credit card used/travel agency etc
 - create reports for example on travel cost per submitter/client/approving manager/department/company etc.
 
-## As Finance I want:
+## As finance I want:
 - create reports on spendings on particular billing method/cc/travel agency etc
 - create reports based on payment date and billing details, for example all weekly charges to single cc
 
-## As Environmental or Security functions I want:
+## As environmental or eecurity functions I want:
 - see location of all travelling people at defined time
 - be able to estimate the miles flown in order to estimate CO2 emissions
 
