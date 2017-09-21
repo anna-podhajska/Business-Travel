@@ -6,7 +6,7 @@ ongoing personal project, work in progress
 - cd Business-Travel
 - npm install
 - npm run dev
-- visit the app at [http://localhost:3100](http://localhost:3100).
+- visit the app at [http://localhost:3001](http://localhost:3001).
 
 ## As a user I want to:
 - create a travel request for travel desk that can be approved by my manager
