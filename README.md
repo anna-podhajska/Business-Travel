@@ -36,7 +36,7 @@ ongoing personal project, work in progress
 - create reports on spendings on particular billing method/cc/travel agency etc
 - create reports based on payment date and billing details, for example all weekly charges to single cc
 
-## As environmental or eecurity functions I want:
+## As environmental and security functions I want:
 - see location of all travelling people at defined time
 - be able to estimate the miles flown in order to estimate CO2 emissions
 
