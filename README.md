@@ -1,16 +1,14 @@
-### Install:
-Clone this repo: git clone https://github.com/anna-podhajska/Business-Travel
+## Description
+ongoing personal project, work in progress
 
-Then:
+### Install / Running
+- clone this repo: git clone https://github.com/anna-podhajska/Business-Travel
 - cd Business-Travel
 - npm install
-- npm run
+- npm run dev
+- visit the app at [http://localhost:4200](http://localhost:4200).
 
-## Description
-personal project that started on the 4th week of bootcamp, 
-work in progress
-
-## As a user I want:
+## As a user I want to:
 - create a travel request for travel desk that can be approved by my manager
 - add project code, name and billing details to the request
 - add travel details to the ticket such as travel details, description, dates
